@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ArchitectOS — the AI architect that knows your whole codebase</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
+</head>
+<body>
+
+<header id="topbar">
+  <div class="brand">
+    <div class="brand-mark">🏛️</div>
+    <div>
+      <div class="brand-name">Architect<span>OS</span></div>
+      <div class="brand-tag">AI architect · persistent knowledge graph</div>
+    </div>
+  </div>
+
+  <div class="repo-controls">
+    <input id="repo-input" type="text" spellcheck="false"
+           placeholder="Local repo path or GitHub URL…">
+    <button id="ingest-btn" class="btn">Ingest</button>
+  </div>
+
+  <div class="header-right">
+    <div id="stats-chips" class="stats-chips"></div>
+    <div id="engine-badge" class="engine-badge">…</div>
+  </div>
+</header>
+
+<main>
+  <section id="graph-wrap">
+    <canvas id="graph"></canvas>
+
+    <div id="graph-overlay-top">
+      <div class="search-box">
+        <input id="search-input" type="text" placeholder="Search the graph…" spellcheck="false" autocomplete="off">
+        <div id="search-results" class="search-results hidden"></div>
+      </div>
+      <div id="type-filters" class="type-filters"></div>
+    </div>
+
+    <div id="impact-banner" class="impact-banner hidden">
+      <span id="impact-banner-text"></span>
+      <button id="impact-exit" class="btn tiny">Exit impact view</button>
+    </div>
+
+    <div id="node-card" class="node-card hidden"></div>
+    <div id="graph-hint" class="graph-hint">drag to pan · scroll to zoom · click a node</div>
+    <div id="legend" class="legend"></div>
+  </section>
+
+  <aside id="panel">
+    <nav id="tabs">
+      <button class="tab active" data-tab="ask">Ask</button>
+      <button class="tab" data-tab="impact">Impact</button>
+      <button class="tab" data-tab="codegen">Codegen</button>
+      <button class="tab" data-tab="architect">Architect</button>
+    </nav>
+
+    <div class="tab-page active" id="page-ask">
+      <div class="page-head">
+        <h2>Ask your codebase</h2>
+        <p>Agent answers over retrieved knowledge-graph context, with node citations.</p>
+      </div>
+      <div id="ask-log" class="scroll-log"></div>
+      <form id="ask-form" class="composer">
+        <input id="ask-input" type="text" placeholder="How does checkout work?" autocomplete="off">
+        <button class="btn primary" type="submit">Ask</button>
+      </form>
+      <div class="suggestions" data-for="ask">
+        <span>How does authentication work?</span>
+        <span>How does checkout work end to end?</span>
+        <span>Where are refresh tokens stored?</span>
+      </div>
+    </div>
+
+    <div class="tab-page" id="page-impact">
+      <div class="page-head">
+        <h2>Impact analysis</h2>
+        <p>Describe a change — the graph computes the blast radius, the agent writes the plan.</p>
+      </div>
+      <div id="impact-log" class="scroll-log"></div>
+      <form id="impact-form" class="composer">
+        <input id="impact-input" type="text" placeholder="Add OAuth login with Google" autocomplete="off">
+        <button class="btn primary" type="submit">Analyze</button>
+      </form>
+      <div class="suggestions" data-for="impact">
+        <span>Add OAuth login with Google</span>
+        <span>Switch payments from Stripe to Adyen</span>
+        <span>Add rate limiting to the API</span>
+      </div>
+    </div>
+
+    <div class="tab-page" id="page-codegen">
+      <div class="page-head">
+        <h2>Generate</h2>
+        <p>agent writes implementation, migration, tests and docs — grounded in the graph. Patch preview only: nothing is ever applied to your repository.</p>
+      </div>
+      <div id="codegen-log" class="scroll-log"></div>
+      <form id="codegen-form" class="composer">
+        <input id="codegen-input" type="text" placeholder="Add OAuth login with Google" autocomplete="off">
+        <button class="btn primary" type="submit">Generate</button>
+      </form>
+    </div>
+
+    <div class="tab-page" id="page-architect">
+      <div class="page-head">
+        <h2>Architecture brief</h2>
+        <p>Module map, key flows, data model, and prioritized recommendations.</p>
+      </div>
+      <div id="architect-log" class="scroll-log"></div>
+      <div class="composer">
+        <button id="architect-run" class="btn primary wide">Analyze architecture</button>
+      </div>
+    </div>
+  </aside>
+</main>
+
+<div id="toast" class="toast hidden"></div>
+
+<script src="graph.js?v=2"></script>
+<script src="app.js?v=2"></script>
+</body>
+</html>
