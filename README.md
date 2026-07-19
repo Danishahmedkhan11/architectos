@@ -9,6 +9,23 @@ which database model, which doc describes which module), and then lets an LLM re
 
 ---
 
+## The problem
+
+AI coding assistants are goldfish: they see the current prompt, not the codebase's
+actual reality. Ask one to add a feature and it'll happily write code that ignores
+existing APIs, existing data models, existing design decisions, and the docs that
+explain *why* things are built the way they are. The result looks plausible and
+breaks real systems — so engineers still do impact analysis by hand before every
+non-trivial change, because nothing else actually knows the codebase.
+
+## The solution
+
+ArchitectOS builds a **persistent knowledge graph** of a repository — every file,
+function, class, API endpoint, data model, and doc, connected by typed edges — and
+grounds every answer, impact plan, and generated change in that graph instead of a
+single prompt. It's the difference between "an LLM that read your files once" and
+"an LLM working from an actual map of how your system fits together."
+
 ## What it actually does
 
 Four things, all grounded in the same graph:
@@ -76,8 +93,8 @@ You have two real options:
 
 | | Cost | Setup | Quality |
 |---|---|---|---|
-| **Free — recommended for just trying it out** | $0 | `OPENROUTER_API_KEY` from [openrouter.ai](https://openrouter.ai) (no payment needed to sign up), set both model vars to `openai/gpt-oss-20b:free` | Good enough to see every feature work end-to-end. Can be rate-limited / occasionally returns a "not enough quota" error under OpenRouter's free tier — that's expected, not a bug. |
-| **Paid — best quality** | Real API cost | A native `OPENAI_API_KEY` from [platform.openai.com](https://platform.openai.com) | Full-strength reasoning and code generation, no rate limits tied to a free quota. |
+| **Native OpenAI — GPT-5.6 + Codex (default here)** | Real API cost | A native `OPENAI_API_KEY` from [platform.openai.com](https://platform.openai.com) | Full-strength reasoning and code generation, no rate limits tied to a free quota. |
+| **OpenRouter — free, for local testing only** | $0 | `OPENROUTER_API_KEY` from [openrouter.ai](https://openrouter.ai) (no payment needed to sign up), set both model vars to `openai/gpt-oss-20b:free` | Good enough to see every feature work end-to-end. Can be rate-limited / occasionally returns a "not enough quota" error under OpenRouter's free tier — that's expected, not a bug. Does not use GPT-5.6/Codex. |
 
 Your `.env` needs exactly one of `OPENAI_API_KEY` or `OPENROUTER_API_KEY` set — if
 both are set, OpenRouter wins. See `.env.example` for the exact variables and comments.
@@ -178,6 +195,28 @@ A few things that look like bugs but aren't, in case you hit them:
   your account balance — it isn't truly unlimited. The app automatically falls back to
   an honest "couldn't get a live answer" message rather than failing silently; the
   graph, search, and blast-radius results above it are unaffected either way.
+
+## Built with Codex
+
+> ⚠️ **TODO before submitting** — this section needs to be filled in with what
+> actually happened in a real Codex CLI session, and the `/feedback` Codex
+> Session ID needs to be added below. Don't submit with this placeholder still
+> in place — an inaccurate claim here risks disqualification under Build
+> Week's rules.
+>
+> To do this properly:
+> 1. Install and run the real Codex CLI ([official docs](https://developers.openai.com/codex/cli); `npm install -g @openai/codex`, then `codex auth`, then `codex` inside this repo).
+> 2. Have it do genuine, meaningful core-functionality work on this codebase — not a token edit. A good candidate: extend the Generate/codegen flow, or add a feature to the graph ingestion.
+> 3. Note below exactly what existed *before* that session vs. what Codex added *during* it (Build Week's rules require this distinction for pre-existing projects).
+> 4. Run `/feedback` in that Codex session to get the session ID, and paste it here.
+
+**What existed before this Codex session:** _(fill in)_
+
+**What Codex added during this session:** _(fill in)_
+
+**Where Codex accelerated the workflow:** _(fill in — e.g. specific files, specific time saved)_
+
+**Codex Session ID:** _(fill in)_
 
 ## Roadmap
 
