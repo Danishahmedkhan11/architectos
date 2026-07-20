@@ -10,7 +10,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY backend/ backend/
 COPY static/ static/
-COPY examples/ examples/
 
 ENV ARCHITECTOS_HOST=0.0.0.0 ARCHITECTOS_PORT=8321
 EXPOSE 8321
