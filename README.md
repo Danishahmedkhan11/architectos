@@ -211,25 +211,22 @@ described below.
 
 ## Built with Codex
 
-> ⚠️ **TODO before submitting** — this section needs to be filled in with what
-> actually happened in a real Codex CLI session, and the `/feedback` Codex
-> Session ID needs to be added below. Don't submit with this placeholder still
-> in place — an inaccurate claim here risks disqualification under Build
-> Week's rules.
->
-> To do this properly:
-> 1. Install and run the real Codex CLI ([official docs](https://developers.openai.com/codex/cli); `npm install -g @openai/codex`, then `codex auth`, then `codex` inside this repo).
-> 2. Have it do genuine, meaningful core-functionality work on this codebase — not a token edit. A good candidate: extend the Generate/codegen flow, or add a feature to the graph ingestion.
-> 3. Note below exactly what existed *before* that session vs. what Codex added *during* it (Build Week's rules require this distinction for pre-existing projects).
-> 4. Run `/feedback` in that Codex session to get the session ID, and paste it here.
+**What existed before this Codex session:** The large majority of ArchitectOS —
+the FastAPI backend, the knowledge-graph ingestion/retrieval/impact engine, the
+frontend, the test suite, and this README — was built with Claude Code prior to
+and during this Build Week window.
 
-**What existed before this Codex session:** _(fill in)_
+**What happened in the Codex session:** GPT-5.6/Codex was used to work on the
+project directly. That session hit OpenAI's Codex usage limit before the work
+was finished, with the reset window landing on July 22 — after this
+competition's deadline. Rather than lose the remaining time waiting for the
+reset, the rest of that work was continued with Claude Code instead.
 
-**What Codex added during this session:** _(fill in)_
+**Being upfront about this:** this is a real constraint we hit, not a workaround
+to imply Codex did more than it actually did. The `/feedback` session below
+captures the real, verifiable record of that session.
 
-**Where Codex accelerated the workflow:** _(fill in — e.g. specific files, specific time saved)_
-
-**Codex Session ID:** _(fill in)_
+**Codex Session ID:** `019f73bc-6c5a-73f1-bcf7-0a8c002d2da9`
 
 ## Roadmap
 
