@@ -96,8 +96,8 @@ You have two real options:
 
 | | Cost | Setup | Quality |
 |---|---|---|---|
-| **Native OpenAI — GPT-5.6 + Codex (default here)** | Real API cost | A native `OPENAI_API_KEY` from [platform.openai.com](https://platform.openai.com) | Full-strength reasoning and code generation, no rate limits tied to a free quota. |
-| **OpenRouter — free, for local testing only** | $0 | `OPENROUTER_API_KEY` from [openrouter.ai](https://openrouter.ai) (no payment needed to sign up), set both model vars to `openai/gpt-oss-20b:free` | Good enough to see every feature work end-to-end. Can be rate-limited / occasionally returns a "not enough quota" error under OpenRouter's free tier — that's expected, not a bug. Does not use GPT-5.6/Codex. |
+| **OpenRouter — free (default here)** | $0 | `OPENROUTER_API_KEY` from [openrouter.ai](https://openrouter.ai) (no payment needed to sign up), set both model vars to `openai/gpt-oss-20b:free` | Good enough to see every feature work end-to-end. Can be rate-limited / occasionally returns a "not enough quota" error under OpenRouter's free tier — that's expected, not a bug. |
+| **Native OpenAI — GPT-5.6 + Codex** | Real API cost | A native `OPENAI_API_KEY` from [platform.openai.com](https://platform.openai.com) | Full-strength reasoning and code generation, no rate limits tied to a free quota. Only needed if you specifically want GPT-5.6/Codex. |
 
 Your `.env` needs exactly one of `OPENAI_API_KEY` or `OPENROUTER_API_KEY` set — if
 both are set, OpenRouter wins. See `.env.example` for the exact variables and comments.
