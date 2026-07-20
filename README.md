@@ -11,20 +11,23 @@ which database model, which doc describes which module), and then lets an LLM re
 
 ## The problem
 
-AI coding assistants are goldfish: they see the current prompt, not the codebase's
-actual reality. Ask one to add a feature and it'll happily write code that ignores
-existing APIs, existing data models, existing design decisions, and the docs that
-explain *why* things are built the way they are. The result looks plausible and
-breaks real systems — so engineers still do impact analysis by hand before every
-non-trivial change, because nothing else actually knows the codebase.
+When you ask a typical AI coding assistant to make a change, it only looks at what
+you just typed — not the rest of your actual project. It doesn't know your other
+files, how they connect to each other, or decisions your team already made and wrote
+down somewhere. So it often suggests code that *looks* right but quietly breaks
+something else, because it never really understood the full picture. That's why
+engineers still have to manually dig through a codebase themselves before making any
+real change — nothing else has done that homework for them.
 
 ## The solution
 
-ArchitectOS builds a **persistent knowledge graph** of a repository — every file,
-function, class, API endpoint, data model, and doc, connected by typed edges — and
-grounds every answer, impact plan, and generated change in that graph instead of a
-single prompt. It's the difference between "an LLM that read your files once" and
-"an LLM working from an actual map of how your system fits together."
+ArchitectOS reads an entire codebase first and builds a map of how everything in it
+actually connects — which files talk to which other files, which parts hit which
+database, which documents explain which features, and so on. That map is called a
+**knowledge graph**, and it's what the AI actually looks at before it answers a
+question, plans a change, or writes any code — instead of just guessing from your
+one message. In short: not an AI that only sees what you just typed, but one that
+already understands how your whole project fits together.
 
 ## What it actually does
 
@@ -195,6 +198,16 @@ A few things that look like bugs but aren't, in case you hit them:
   your account balance — it isn't truly unlimited. The app automatically falls back to
   an honest "couldn't get a live answer" message rather than failing silently; the
   graph, search, and blast-radius results above it are unaffected either way.
+
+## Planning
+
+Before implementation started, the overall design — the knowledge-graph model, the
+node/edge schema, and the feature set — was planned out with GPT-5.6, producing a
+27-page design specification: [`docs/ArchitectOS_Design_Specification.pdf`](docs/ArchitectOS_Design_Specification.pdf).
+The shipped implementation deliberately follows that spec's "Must have" priorities
+with lighter infrastructure in places, rather than a 1:1 build-out — this is a note
+on the *planning* phase specifically, separate from the Codex code-generation work
+described below.
 
 ## Built with Codex
 

@@ -5,3 +5,9 @@ __pycache__/
 data/
 .env
 .DS_Store
+
+# Raw video export — belongs on YouTube per the submission rules, not in git.
+Demo Video/
+# Original copy of the design doc (spaces in the name); the tracked copy
+# lives at docs/ArchitectOS_Design_Specification.pdf instead.
+Architecture plan document by GPT 5.6/
